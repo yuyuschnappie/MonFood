@@ -3,6 +3,7 @@
 這是一個就學期間寫的專題作品，主要內容為一個外送平台-MonFood，由七個組員共同完成。
 我主要負責內容：
 
+以下僅列出代表檔案
 <strong>◉登入註冊 - 註冊資料即時驗證、自動發送信件驗證Email並生效註冊帳號。</strong>
 MonFood/src/main/java/com/model/user
 MonFood/src/main/java/mailservice/
