@@ -24,4 +24,6 @@ MonFood/src/main/webapp/adminRes.html
 後端：Java,JSP
 資料庫連線：JDBC
 資料庫：MySQL,Redis
+
+專案使用：JAVA, Servlet MVC, Ajax, WebSocket, MySQL, JQuery, JavaScript, Google Maps APIs, Bootstrap, RWD, GCP
 </pre>
