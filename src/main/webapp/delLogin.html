@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MonFood | delLogin</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/index.css">
+   <!-- SWEATALERT -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.container {
+	width: 75%;
+}
+
+.form-group {
+	height: calc(100vh - 56px);
+	display: flex;
+	justify-content: center; /* 水平對齊 */
+	align-items: center; /* 垂直對齊 */
+}
+
+@media ( max-width : 629.98px) {
+	.form-group {
+		align-items: baseline;
+	}
+}
+
+.headline {
+	text-align: center;
+}
+
+@media ( max-width : 629.98px) {
+	.headline {
+		margin-top: 20px;
+		width: 100%;
+		font-size: 16px;
+		white-space: nowrap
+	}
+}
+
+.single-btn {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.bottom-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+@media ( max-width : 629.98px) {
+	/* .bottom-btn{
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        } */
+	.bottom-btn {
+		display: block;
+		width: 100%;
+	}
+	.btn {
+		width: 100%;
+	}
+}
+
+@media ( max-width : 339.20px) {
+	.bottom-btn {
+		display: block;
+		width: 100%;
+	}
+	.btn {
+		width: 100%;
+	}
+}
+
+.noticespan, .pointspan {
+	color: red;
+	font-size: 10px;
+}
+
+.pointspan {
+	color: red;
+	font-size: 10px;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+
+	<!-- HEADER -->
+	<header>
+		<nav class="navbar navbar-expand-lg" style="background-color: #1A4D2E">
+			<div class="container">
+				<a class="navbar-brand d-inline-flex" href="index.html"> <span
+					class="logo">Mon</span> <span class="logo2" style="color: white;">Food</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<!-- HEADER -->
+
+	<main>
+		<!-- section -->
+		<div class="container">
+				<div class="form-group row mx-auto col-sm-12 col-md-10 col-lg-8 col-xl-8">
+					<div class="row">
+						
+						<h3 class="headline mb-4">您的手機號碼為何？</h3>
+						<span class="pointspan span"></span>
+						<div class="mb-3">
+							<input type="text" class="form-control" id="delTel" name="delTel"
+								placeholder="請輸入您的手機號碼"> 
+							<span class="noticespan telspan"></span>
+						</div>
+
+						<div class="mb-3">
+							<input type="password" class="form-control" id="delPassword" name="delPassword"
+								placeholder="請輸入您的密碼"> 
+							<span class="noticespan passwordspan"></span>
+						</div>
+					
+						<div class="bottom-btn">
+							<a href="delRegister.html">
+								<button type="button" class="delRegister btn btn-primary mb-3" style="background-color: #1A4D2E">註冊成為外送員</button>
+							</a>
+						
+							<button type="button" class="enter btn btn-primary mb-3 btn_confirm" style="background-color: #1A4D2E">送出</button>
+						</div>
+						<div class="single-btn">
+							<a href="del/delResetPassword.html">
+								<button type="button" class="forget-password btn btn-primary" style="background-color: #1A4D2E">忘記密碼</button>
+							</a>
+						</div>
+					
+					</div>
+				</div>
+    	</div>
+
+		<!-- section -->
+	</main>
+
+	<script src="assets/js/jQuery-3.6.0.js"></script>
+	<script>
+        
+        $(function(){ 
+
+// 最後的送出鍵如果電話有值綁enter
+			$("input#delPassword").on("keyup", function(e){
+        		if($("input#delTel").val() != "" && e.which == 13){
+            		$("button.btn_confirm").click();
+        		}
+    		});
+
+// tel驗證
+			$("#delTel").on("blur",function(){
+        	  	var telPattern = /^[0-9]{10}$/;
+          		if($("#delTel").val().trim() == ""){
+              		$(".telspan").addClass("noticespan").text('*手機號碼不能留白喔');
+            	}else if(!(telPattern.test($("#delTel").val().trim()))){
+              		$(".telspan").addClass("noticespan").text('*這不是手機號碼吧');
+            	}else{
+              		$(".telspan").removeClass("noticespan").text('');
+            	}
+          	});
+          
+// 密碼驗證
+          // 以下是這個正規表示式的 pattern 的內容:
+          // 密碼長度須超過八個字 {8,} 密碼複雜度須包含: 小寫字母 [a-z] 大寫字母 [A-Z] 數字 \d
+        	$("#delPassword").on("blur",function(){
+           		var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+            	if($("#delPassword").val().trim() == ""){
+              		$(".passwordspan").addClass("noticespan").text('*請輸入密碼');  
+            	}else if(!(pattern.test($("#delPassword").val().trim()))){
+					console.log("test");
+              		$(".passwordspan").addClass("noticespan").text(`*密碼長度須至少八個字元。密碼複雜度須包含:小寫字母、大寫字母、數字`); 
+            	}else{
+              		$(".passwordspan").removeClass("noticespan").text('');
+            	}
+         	});
+
+// 送出登入資料
+			$("button.btn_confirm").on("click", function(){
+				if($("span").hasClass("noticespan")){
+					swinputError();
+					return;
+				}else{
+					let delTel = $("#delTel").val().trim();
+					let delPassword = $("#delPassword").val().trim();
+					$.ajax({
+              			url: "DelLoginServlet",           
+              			type: "POST",                  
+              			data: JSON.stringify({
+                			delTel: delTel,
+                			delPassword: delPassword
+              			}),             
+              			contentType : "application/json;charset=utf-8",
+              			dataType: "json",             
+              			success: function(data){      
+                			console.log(data);
+                			if(data.loginResult == "登入成功"){
+                  				location.href="del/delInfo.html";
+                			}else if(data.loginResult == "登入失敗請重新嘗試"){;
+                  				$(".pointspan").addClass("noticespan").text("登入失敗請重新嘗試");
+                			}            
+              			},
+						error: function(errMsg){         
+                			console.log(errMsg);
+            			},
+						complete: function(xhr){     
+							$("#delTel , #delPassword").on("blur",function(){
+								if($("#delTel").val().trim() != "" || $("#delpassword").val().trim() != ""){
+									$(".pointspan").removeClass("noticespan").text('');
+								}
+							});
+						}
+            		});
+				}	
+			});
+
+// sweatAlert for typing error
+			function swinputError(){
+				Swal.fire({
+				title: '輸入錯誤!',
+				text: '請再次檢查輸入資料是否有誤',
+				icon: 'error',
+				confirmButtonText: 'OK'
+				})
+			}
+      
+        
+
+
+
+        });
+      </script>
+
+</body>
+</html>

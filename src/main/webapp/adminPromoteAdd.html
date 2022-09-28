@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/css/jquery.datetimepicker.forMandy.css"
+    />
+    <title>MonFood</title>
+    <!-- w3c.js 引入共用畫面 -->
+    <style>
+      .noticespan {
+        color: red;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="assets/js/jquery.forMandy.js"></script>
+    <script src="assets/js/jQuery-3.6.0.js"></script>
+    <script src="assets/js/datetimepicker.full.forMandy.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <div class="container-scroller">
+      <!-- ===== sidebar start ===== -->
+      <!-- TODO: 未來 JSP <jsp:include page="sidebar.jsp" /> 取代 -->
+      <div w3-include-html="adminSidebar.html"></div>
+      <!-- ===== sidebar end ===== -->
+
+      <div class="container-fluid page-body-wrapper">
+        <!-- ===== header start ===== -->
+        <!-- TODO: 未來 JSP <jsp:include page="header.jsp" /> 取代 -->
+        <div w3-include-html="adminHeader.html"></div>
+        <!-- ===== header end ===== -->
+
+        <div class="main-panel">
+          <!-- ===== 內容客製化區塊 start ===== -->
+          <div class="mf-content-wrapper mt-4">
+            <!-- 表單區塊 -->
+            <div
+              class="jumbotron"
+              style="
+                margin-left: 70px;
+                padding-bottom: 50px;
+                padding-left: 95px;
+                width: 700px;
+              "
+            >
+              <div class="form-group row">
+                <label
+                  for="promoteCode"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 18px; padding-left: 20px"
+                  >優惠券代碼</label
+                >
+                <div class="col-sm-12" style="width: 500px">
+                  <input
+                    type="text"
+                    placeholder="輸入優惠券代碼"
+                    name="promoteCode"
+                    class="form-control"
+                    id="promoteCode"
+                    style="margin: 10px"
+                  />
+                  <span
+                    class="noticespan promoteCodespan"
+                    style="margin-left: 12px"
+                  ></span>
+                </div>
+
+                <label
+                  for="promotePrice"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 18px; padding-left: 20px"
+                  >折扣金額</label
+                >
+                <div class="col-sm-12" style="width: 500px">
+                  <input
+                    type="text"
+                    placeholder="輸入折扣金額"
+                    name="promotePrice"
+                    class="form-control"
+                    id="promotePrice"
+                    style="margin: 10px"
+                  />
+                  <span
+                    class="noticespan promotePricespan"
+                    style="margin-left: 12px"
+                  ></span>
+                </div>
+
+                <label
+                  for="start_date"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 18px; padding-left: 20px"
+                  >開始日期</label
+                >
+                <div class="col-sm-12" style="width: 500px">
+                  <input
+                    name="start_date"
+                    id="start_date"
+                    placeholder="請選擇開始日期"
+                    class="form-control"
+                    type="text"
+                    style="margin: 10px"
+                  />
+                  <span
+                    class="noticespan start_datespan"
+                    style="margin-left: 12px"
+                  ></span>
+                </div>
+
+                <label
+                  for="end_date"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 18px; padding-left: 20px"
+                  >結束日期</label
+                >
+                <div class="col-sm-12" style="width: 500px">
+                  <input
+                    name="end_date"
+                    id="end_date"
+                    placeholder="請選擇結束日期"
+                    class="form-control"
+                    type="text"
+                    style="margin: 10px"
+                  />
+                  <span
+                    class="noticespan end_datespan"
+                    style="margin-left: 12px"
+                  ></span>
+                </div>
+                <label
+                  for="status"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 18px; padding-left: 20px"
+                  >優惠券狀態</label
+                >
+                <div class="col-sm-12">
+                  <select
+                    name="status"
+                    id="status"
+                    style="
+                      padding-left: 8px;
+                      border-color: #ced4da;
+                      border-radius: 4px;
+                      font-size: 14px;
+                      height: 33px;
+                      margin: 10px;
+                    "
+                  >
+                    <option value="0">過期</option>
+                    <option value="1">使用中</option>
+                    <option value="2">未生效</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-12 d-flex justify-content-end mt-3">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="background: #3d424e; border: none"
+                  >
+                    送出新增
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ===== 內容客製化區塊 ===== -->
+
+          <!-- ===== footer start ===== -->
+          <!-- TODO: 未來 JSP <jsp:include page="footer.jsp" /> 取代 -->
+          <div w3-include-html="adminFooter.html"></div>
+          <!-- ===== footer end ===== -->
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/adminLogout.js"></script>
+    <script>
+      var sDay;
+      var eDay;
+      document
+        .querySelector("input#start_date")
+        .addEventListener("change", function () {
+          $("input#start_date").attr("value", $(this).val());
+          //赋值
+          sDay = this.value;
+        });
+
+      document
+        .querySelector("input#end_date")
+        .addEventListener("change", function () {
+          $("input#end_date").attr("value", $(this).val());
+          //赋值
+          eDay = this.value;
+        });
+
+      // <jsp:include page="head.jsp" /> 即可移除以下 <script>
+
+      document.addEventListener("DOMContentLoaded", function () {
+        debugger
+        w3.includeHTML(function () {
+          var scriptObj = document.querySelectorAll('script[src^="assets"]');
+
+          for (var i = 0; i < scriptObj.length; i++) {
+            var scriptElement = document.createElement("script");
+            scriptElement.src = scriptObj[i].getAttribute("src");
+
+            document.head.appendChild(scriptElement);
+          }
+        });
+      });
+      const promoteCode = document.querySelector("#promoteCode");
+      const promotePrice = document.querySelector("#promotePrice");
+      const startDate = document.querySelector("#start_date");
+      const endDate = document.querySelector("#end_date");
+      const status = document.querySelector("#status");
+
+      document.querySelector("button").addEventListener("click", () => {
+        if (
+          !promoteCode.value ||
+          !promotePrice.value ||
+          !startDate.value ||
+          !endDate.value ||
+          !status
+        ) {
+          swal('資料請填寫完成', '', 'warning');
+          return;
+        } else {
+          console.log(startDate.value);
+          var url = "PromoteListServlet";
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "content-Type": "application.json",
+            },
+            
+            body: JSON.stringify({
+              promoteCode: promoteCode.value,
+              promotePrice: promotePrice.value,
+              startDate: startDate.value,
+              endDate: endDate.value,
+              status: status.value,
+            }),
+            
+          })
+                .then(function(resp){
+                  if(resp.ok){
+                    const promoteCode = document.querySelector("#promoteCode");
+                    promoteCode.value = '';
+                    const promotePrice = document.querySelector("#promotePrice");
+                    promotePrice.value = '';
+                    const startDate = document.querySelector("#start_date");
+                    startDate.value = '';
+                    const endDate = document.querySelector("#end_date");
+                    endDate.value = '';
+                    const success = swal('新增成功', '', 'success');
+                    return resp.json();
+                    
+                  }
+                })
+        }
+      });
+
+      //優惠代碼驗證
+      $("#promoteCode").on("blur", function () {
+        // $("#promoteCode").html("");
+        var numCheck = /^[0-9]*$/;
+        //空白驗證
+        if (
+          $("#promoteCode").val().trim() == null ||
+          $("#promoteCode").val().trim() == ""
+        ) {
+          $(".promoteCodespan")
+            .addClass("noticespan")
+            .text("*優惠券代碼請勿空白");
+          //格式驗證
+        } else if (numCheck.test($("#promoteCode").val().trim())) {
+          $(".promoteCodespan")
+            .addClass("noticespan")
+            .text("*優惠券代碼請輸入文字");
+        } else {
+          $(".promoteCodespan").removeClass("noticespan").text("");
+        }
+      });
+
+      //優惠金額驗證
+      $("#promotePrice").on("blur", function () {
+        var numCheck = /^[0-9]*$/;
+        //空白驗證
+        if (
+          $("#promotePrice").val().trim() == null ||
+          $("#promotePrice").val().trim() == ""
+        ) {
+          $(".promotePricespan")
+            .addClass("noticespan")
+            .text("*優惠金額碼請勿空白");
+          //格式驗證
+        } else if (!numCheck.test($("#promotePrice").val().trim())) {
+          $(".promotePricespan")
+            .addClass("noticespan")
+            .text("*優惠金額請輸入數字");
+        } else {
+          $(".promotePricespan").removeClass("noticespan").text("");
+        }
+      });
+
+      //開始日期驗證
+      $("#start_date").on("blur", function () {
+        //空白驗證
+        if (
+          $("#start_date").val().trim() == null ||
+          $("#start_date").val().trim() == ""
+        ) {
+          $(".start_datespan").addClass("noticespan").text("*請選擇開始日期");
+        } else {
+          $(".start_datespan").removeClass("noticespan").text("");
+        }
+      });
+
+      //結束日期驗證
+      $("#end_date").on("blur", function () {
+        //空白驗證
+        if (
+          $("#end_date").val().trim() == null ||
+          $("#end_date").val().trim() == ""
+        ) {
+          $(".end_datespan").addClass("noticespan").text("*請選擇結束日期");
+        } else {
+          $(".end_datespan").removeClass("noticespan").text("");
+        }
+      });
+
+      $.datetimepicker.setLocale("zh");
+      $(function () {
+        $("#start_date").datetimepicker({
+          format: "Y-m-d",
+          onShow: function () {
+            this.setOptions({
+              maxDate: $("#end_date").val() ? $("#end_date").val() : false,
+            });
+          },
+          timepicker: false,
+        });
+
+        $("#end_date").datetimepicker({
+          format: "Y-m-d",
+          onShow: function () {
+            this.setOptions({
+              minDate: $("#start_date").val() ? $("#start_date").val() : false,
+            });
+          },
+          timepicker: false,
+        });
+      });
+    </script>
+  </body>
+</html>

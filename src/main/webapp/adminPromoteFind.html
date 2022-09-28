@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>MonFood</title>
+    <!-- w3c.js 引入共用畫面 -->
+    <style>
+      .monfood-select {
+        padding-left: 8px;
+        border-color: #ced4da;
+        border-radius: 4px;
+        font-size: 14px;
+        height: 33px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+    <div class="container-scroller">
+      <!-- ===== sidebar start ===== -->
+      <!-- TODO: 未來 JSP <jsp:include page="sidebar.jsp" /> 取代 -->
+      <div w3-include-html="adminSidebar.html"></div>
+      <!-- ===== sidebar end ===== -->
+
+      <div class="container-fluid page-body-wrapper">
+        <!-- ===== header start ===== -->
+        <!-- TODO: 未來 JSP <jsp:include page="header.jsp" /> 取代 -->
+        <div w3-include-html="adminHeader.html"></div>
+        <!-- ===== header end ===== -->
+
+        <div class="main-panel">
+          <!-- ===== 內容客製化區塊 start ===== -->
+          <div class="mf-content-wrapper mt-5">
+            <!-- 表單區塊 -->
+            <div
+              class="jumbotron"
+              style="
+                padding-bottom: 20px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+              "
+            >
+              <div class="form-group row">
+                <label
+                  for="promoteId"
+                  class="col-sm-12 col-form-label"
+                  style="font-size: 25px; margin-bottom: 10px"
+                  >查詢優惠券</label
+                >
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    placeholder="輸入優惠券編號"
+                    name="promoteId"
+                    class="form-control"
+                    id="promoteId"
+                  />
+                </div>
+                <span id="errMsg" style="color: red; font-size: 12px"></span>
+                <div class="col-sm-12 d-flex justify-content-end mt-3">
+                  <button
+                    id="selectAll"
+                    type="submit"
+                    class="btn btn-primary"
+                    style="background: #3d424e; border: none"
+                  >
+                    查詢所有優惠券
+                  </button>
+                  <button
+                    id="selectOne"
+                    type="submit"
+                    class="btn btn-primary"
+                    style="background: #3d424e; border: none; margin-left: 10px"
+                  >
+                    單筆優惠券查詢
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row result">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header" style="background-color: #e9ecef">
+                    <h3
+                      class="card-title"
+                      style="color: black; margin: 10px; font-size: 25px"
+                    >
+                      查詢結果
+                    </h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div
+                    class="card-body table-responsive p-0"
+                    style="height: 300px"
+                  >
+                    <table class="table table-head-fixed text-nowrap">
+                      <thead>
+                        <tr>
+                          <th style="width: 130px">優惠券編號</th>
+                          <th style="width: 150px">優惠券代碼</th>
+                          <th style="width: 130px">優惠折抵</th>
+                          <th style="width: 150px">開始日期</th>
+                          <th style="width: 150px">結束日期</th>
+                          <th>狀態</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody id="content"></tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+          </div>
+          <!-- ===== 內容客製化區塊 ===== -->
+
+          <!-- ===== footer start ===== -->
+          <!-- TODO: 未來 JSP <jsp:include page="footer.jsp" /> 取代 -->
+          <div w3-include-html="adminFooter.html"></div>
+          <!-- ===== footer end ===== -->
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/jQuery-3.6.0.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="js/adminLogout.js"></script>
+    <script>
+      // <jsp:include page="head.jsp" /> 即可移除以下 <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        w3.includeHTML(function () {
+          var scriptObj = document.querySelectorAll('script[src^="assets"]');
+
+          for (var i = 0; i < scriptObj.length; i++) {
+            var scriptElement = document.createElement("script");
+            scriptElement.src = scriptObj[i].getAttribute("src");
+
+            document.head.appendChild(scriptElement);
+          }
+        });
+      });
+      $(function () {
+        const promoteId = $("#promoteId");
+
+        $("#promoteId").on("blur", function () {
+          $("#errMsg").text("");
+        });
+
+        $("#promoteId").keypress(function (e) {
+          if (e.which == 13) {
+            console.log('hi');
+            $("#selectOne").click();
+          }
+        });
+
+//update
+function select() { 
+  // 取得下拉選單的狀態值
+  const selectedVal = $(this).val();
+
+  // 取得該筆 promoteListId
+  const promoteId = $(this).data('promoteid');
+
+  $.ajax({
+    url: 'PromoteListUpdateServlet',
+    type: 'POST',
+    dataType: 'JSON',
+    data: JSON.stringify({
+      status: selectedVal,
+      promoteId: promoteId
+    }),
+    success: function(data) {
+      // 執行成功，改變下拉選單狀態
+      console.log(data);
+      $(this).val(data.status);
+      swal('修改成功', '', 'success');
+    }
+  });
+}
+
+        // selectOne
+        $("#selectOne").on("click", function () {
+          let errMsg;
+          let numCheck = /^[0-9]*$/;
+          if (promoteId.val().trim() == null || promoteId.val().trim() == "") {
+            errMsg = "*優惠券編號請勿空白";
+            $("#errMsg").text(errMsg);
+            return;
+          }
+
+          if (!numCheck.test(promoteId.val().trim())) {
+            errMsg = "*請輸入數字";
+            $("#errMsg").text(errMsg);
+            return;
+          }
+
+          // console.log("我在這");
+
+          $.ajax({
+            url: "PromoteListOneServlet",
+            type: "POST",
+            data: JSON.stringify({ promoteId: promoteId.val().trim() }),
+            dataType: "json",
+            success: function (res) {
+
+              var startDate = res["PromoteLists"].startDate;
+              console.log(startDate);
+              JSON.stringify(res);
+              var startDateFinal = dateformat(res["PromoteLists"].startDate);
+              var endDate = dateformat(res["PromoteLists"].endDate)
+              
+              function dateformat(date){
+                var date1 = date.replace("月", "-");
+                var datelist = date1.split(",")
+                var startDateFinal = datelist[1] + "  -  " + datelist[0]
+                return startDateFinal
+              }
+          
+              let selectHtml = `
+                <select id="status" class="monfood-select" data-promoteid="${res["PromoteLists"].promoteId}" name="status">
+                  <option value="0">過期</option>
+                  <option value="1">使用中</option>
+                  <option value="2">未生效</option>
+                </select>
+              `;
+
+              let table_html = `
+                  <tr>
+                    <td>${res["PromoteLists"].promoteId}</td>
+                    <td>${res["PromoteLists"].promoteCode}</td>
+                    <td>${res["PromoteLists"].promotePrice}</td>
+                    <td>${startDateFinal}</td>
+                    <td>${endDate}</td>
+                    <td>${selectHtml}</td>
+                    </tr>
+                    `;
+
+              $("#content").html(table_html);
+              $("#status").val(res.PromoteLists.status);
+
+              // 綁定 change 事件
+              $("#status").change(select);
+            },
+          });
+        });
+
+        // selectAll
+        $("#selectAll").on("click", function () {
+          let errMsg;
+
+          $.ajax({
+            url: "PromoteListAllServlet",
+            type: "POST",
+            dataType: "json",
+
+            success: function (data) {
+              $("#content").html("");
+              console.log(data);
+
+              $.each(data, function () {
+                console.log(data);
+                $.each(this, function (index, data) {
+                  console.log(data.endDate);
+                  console.log(index);
+
+                  let table_html = `
+                  <tr>
+                    <td>${data.promoteId}</td>
+                    <td>${data.promoteCode}</td>
+                    <td>${data.promotePrice}</td>
+                    <td>${data.startDate}</td>
+                    <td>${data.endDate}</td>
+                    <td>${data.status}</td>
+                  
+                    </tr>
+                    `;
+                  $("#content").append(table_html);
+                });
+              });
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

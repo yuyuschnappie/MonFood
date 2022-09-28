@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/userHeader.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/pay.css">
+     <!-- include button -->
+     <link rel="stylesheet" href="css/buttonContent.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+      </style>
+</head> 
+<body>
+  <script src="js/venders/jquery/jquery-3.6.0.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6AB8jcKkzMnwsPPZhMQBRgKXF_lXaX84&libraries=places"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="js/pay.js"></script>
+  <script src="js/logout.js"></script>
+  <!-- include button -->
+  <script src="js/buttonContent.js"></script>
+
+
+    <!-- offcanvas bottom-->
+    <div class="offcanvas offcanvas-bottom justify-content-center" id="bottombar" tabindex="-1" aria-labelledby="sidebar-label">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebar-label">更改外送地址</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div class="offcanvas-body">
+        <div class="container">
+          <div class="row">
+            <div class="col d-flex justify-content-between">
+                <input type="text" id="address" placeholder="請輸入地址" style="width: 75%">
+                <button class="btn textConfirm" data-bs-dismiss="offcanvas" aria-label="Close">確認</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+                <ul style="padding:0" id="userLocation">
+                </ul>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- offcanvas bottom-->
+    
+    <!-- navbar -->
+    <header>
+      <nav class="navbar navbar-expand-lg" style="background-color: #FF7F3F">
+        <div class="container">
+              
+          <a href="userProfile/userprofile.html" class="transparent" id="profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </a>
+              
+          <a class="navbar-brand d-inline-flex" href="index.html">
+              <span class="logo">Mon</span>
+              <span class="logo2">Food</span>
+          </a>
+              
+          <div class="d-inline-flex align-items-center">
+            <a href="" class="transparent" id="cart" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+            </a>
+              
+              <a href="userLogin.html" class="btn btn-primary black" id="login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg><span id="logStatus" class="login">登入</span>
+              </a>
+          </div>
+
+        </div>
+      </nav>
+    </header>
+    <!-- navbar -->
+    
+    <!-- main -->
+    <main>
+      <section class="overflow-hidden">
+        <div class="container">
+          <div class="row justify-content-center">
+            <hr style="margin-top: 50px; margin-bottom: 5px;">
+            <h3 class="">外送資訊</h5>
+          </div>
+          <div class="row mt-3">
+            <div class="col-lg-6 col-md-12">
+              <h5 class="resName"></h5>
+              <div id="map"></div>
+              </div>
+              <div class="col-lg-6 col-md-12 del">
+                送至
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                  </svg>
+                  <span id="finalAddress"></span>
+                  <a href="" id="changeAddress" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#bottombar" aria-controls="sidebar">
+                    更改
+                  </a>
+                </div>
+                <div>預計送達時間 <span id="duration"></span></div>
+              </div>
+          </div>
+
+            <div class="row justify-content-center">
+              <hr style="margin-top: 50px; margin-bottom: 5px;">
+              <h3 class="">訂單內容</h5>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-lg-6 col-md-12">
+                <ul class="cartList" style="padding: 0;">
+                </ul>
+              </div>
+                
+              <div class="col-lg-6 col-md-12">
+                <div class="amount">
+                  <div class="d-flex justify-content-between">
+                    <div>小記</div>
+                    <div>$<span class="itemTotal">240</span></div>
+                  </div>
+                  
+                  <div class="d-flex justify-content-between">
+                    <div>外送費</div>
+                    <div>$<span class="delCost">40</span></div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div>紅利折抵</div>
+                    <div>$-<span class="discountVal"></span></div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <input type="text" class="promoteText" value="" placeholder="輸入優惠代碼">
+                    <button class="btn btn-primary disConfirm" id="promoteConfirm" type="submit">確認</button>
+                  </div>
+                  <div id="promoteMsg" class="d-flex justify-content-between">
+                    
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <input type="text" style="margin-top: 5px;" class="note" value="" placeholder="輸入訂單備註">
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <div>總金額</div>
+                    <div>$<span id="total"></span></div>
+                  </div>
+                </div>
+                <hr style="margin-top: 10px; margin-bottom: 10px;">
+                  <div class="pay">
+                    <h5>付款方式</h5>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pay" id="cash" value="cash" checked="checked">
+                      <label class="form-check-label" for="cash">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                          <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                          <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+                          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                        </svg>
+                        現金
+                      </label>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-between">
+                      <div>
+                        <input class="form-check-input" type="radio" name="pay" id="creditcard" value="creditcard">
+                        <label class="form-check-label" for="creditcard">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+                          </svg>
+                          信用卡
+                        </label>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary submit" type="submit">送出訂單</button>
+                    <span id="orderMsg" style="color: red; font-size:12px"></span>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <hr style="margin-top: 50px; margin-bottom: 5px;">
+              <h3 class="">此筆訂單</h5>
+            </div>
+
+            <div class="row mt-3 mb-2">
+              <div class="col-lg-5 mb-2 d-flex justify-content-around">
+                <div>
+                  <img id="monsPic" src="" alt="" style="height: 100px; width: 100px">
+                </div>
+                <div class="align-self-center">
+                  <div>小怪獸-Level <span class="monsLevelBottom"></span></div>
+                  <div>紅利折抵- <span class="discountValBottom"></span> 元</div>
+                </div>
+              </div>
+              <div class="col-lg-7 mb-2 ">
+                <div class="d-flex justify-content-around align-items-center">
+                  <span>小怪獸EXP</span>
+                  <div class="progress d-flex justify-content-between" style="width: 50%;">
+                    <div id="levelEXP" class="progress-bar" role="progressbar" style="width: 10%; background-color: #FF7F3F;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">                    
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-around align-items-center">
+                  <span>熱量Kcal</span>
+                  <div class="progress progress d-flex justify-content-between" style="width: 50%;">
+                    <div id="kcalEXP" class="progress-bar" role="progressbar" style="width: 78%; background-color: #FF7F3F;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
+                      
+                    </div>
+                    <div id="kcalSet" style="padding-right: 10px;"></div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-around align-items-center">
+                  <span>消費金額</span>
+                  <div class="progress progress d-flex justify-content-between" style="width: 50%;">
+                    <div id="budgetEXP" class="progress-bar" role="progressbar" style="width: 98%; background-color: #FF7F3F;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
+                      <span>$<span id="budgetEXPText"></span></span> 
+                    </div>
+                    <div style="padding-right: 10px;">$<span id="budgetSet"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ecpay -->
+          <div id="ecpay">
+          </div>
+          <!-- ecpay -->
+      </section>
+    </main>
+    <!-- main -->
+
+
+    <!-- Footer -->
+    <div style="background-color: #FF7F3F">
+      <div class="container pb-0 mb-0 text-light " style="background-color: #FF7F3F">
+        <footer>
+          <div class="row justify-content-center mb-0 pt-0 pb-0 row-2 px-3">
+            <div class="col-12">
+
+              <div class="row justify-content-between ">
+                <div class="col-6 align-self-center">
+                  <a class="navbar-brand d-inline-flex" href="index.html">
+                    <span class="logo">Mon</span>
+                    <span class="logo2">Food</span>
+                  </a>
+                </div>
+
+                <div class="col-6 col-lg-2 col-md-3 mt-sm-0 mt-0" style="font-size: 13px">
+                  <ul class="list-unstyled justify-content-center">
+                    <li class="mt-3 mb-1">
+                      <a href="resLogin.html" class="transparent">新增您的餐廳</a>
+                    </li>
+                    <li class="mb-1 transparent">
+                      <a href="delLogin.html">註冊成為外送夥伴</a>
+                    </li>
+                    <li class="mb-1 transparent">
+                      <a href="aboutUs.html">關於MonFood</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>  
+
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- Footer -->
+    <!-- include button -->
+    <div w3-include-html="buttonContent.html"></div>
+    <script>
+      sessionStorage.setItem('location','pay')
+    </script>
+         <!-- include button -->
+         <script>
+          function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+              elmnt = z[i];
+              /*search for elements with a certain atrribute:*/
+              file = elmnt.getAttribute("w3-include-html");
+              if (file) {
+                /* Make an HTTP request using the attribute value as the file name: */
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                  if (this.readyState == 4) {
+                    if (this.status == 200) {
+                      elmnt.innerHTML = this.responseText;
+                    }
+                    if (this.status == 404) {
+                      elmnt.innerHTML = "Page not found.";
+                    }
+                    /* Remove the attribute, and call this function once more: */
+                    elmnt.removeAttribute("w3-include-html");
+                    includeHTML();
+                  }
+                };
+                xhttp.open("GET", file, true);
+                xhttp.send();
+                /* Exit the function: */
+                return;
+              }
+            }
+          }
+          includeHTML();
+        </script>
+  </body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>MonFood || DelMember Center</title>
+
+    <link rel="stylesheet" href="/monfood_maven/assets/css/user-member-center-style/friendList.css"/>
+    <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="../assets/css/monfood-skeleton.css" />
+    <link rel="stylesheet" href="../css/userProfile-header.css" />
+    <link rel="stylesheet" href="../css/userProfile-sidebar.css" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="../css/delMsg.css" type="text/css" /> -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+      
+      a.nav-link:hover{
+        background-color: #1A4D2E !important;
+      }
+
+      ul#area{
+        overflow: scroll;
+      }
+
+      :root {
+        --red: hsl(0, 78%, 62%);
+        --cyan: hsl(180, 62%, 55%);
+        --orange: hsl(34, 97%, 64%);
+        --blue: hsl(212, 86%, 64%);
+        --varyDarkBlue: hsl(234, 12%, 34%);
+        --grayishBlue: hsl(229, 6%, 66%);
+        --veryLightGray: hsl(0, 0%, 98%);
+        --weight1: 200;
+        --weight2: 400;
+        --weight3: 600;
+      }
+
+      ul#area {
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+        background-color: var(--veryLightGray);
+      }
+
+      .box {
+        border-radius: 5px;
+        box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+        padding: 30px;
+        margin: 20px;
+        background-color: #CEFFCE;
+      }
+
+
+
+    @media (max-width: 450px) {
+      .box {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 950px) and (min-width: 450px) {
+      .box {
+        text-align: center;
+        height: 180px;
+      }
+    }
+
+      .cyan {
+        border-top: 3px solid #1A4D2E;
+      }
+      h2 {
+        color: var(--varyDarkBlue);
+        font-weight: var(--weight3);
+      }
+
+    @media (min-width: 950px) {
+
+      .box {
+        width: 70%;
+        background-color: rgb(220, 220, 220);
+        color: var(--varyDarkBlue);
+        font-weight: var(--weight3);
+      }
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-scroller">
+<!-- SIDEBAR START -->
+      <nav class="sidebar sidebar-offcanvas mf-sidebar" id="sidebar">
+        <ul class="nav" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item nav-category">
+            <span class="nav-link">
+              <a href="../delIndex.html">
+                <img width="16px" height="16px" src="../assets/images/arrow-left-solid.svg"/>
+                <span class="ml-3">返回前台</span>
+              </a>
+            </span>
+          </li>
+
+          <br>
+          <br>
+          <br>
+
+          <li class="nav-item menu-items">
+            <a style="background-color: white; color: rgb(30, 29, 29)" class="nav-link" data-toggle="collapse" href="delInfo.html" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <svg style="color: rgb(30, 29, 29); height: 60%; width: 60%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+              </span>
+              <span style="color: rgb(30, 29, 29)" class="menu-title">基本資料</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a style="background-color: white; color: rgb(30, 29, 29)" class="nav-link" href="delDoc.html">
+              <span class="menu-icon">
+                <svg style="color: rgb(30, 29, 29); height: 60%; width: 60%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-data-fill" viewBox="0 0 16 16">
+                  <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
+                  <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1Z" />
+                </svg>
+              </span>
+              <span style="color: rgb(30, 29, 29)" class="menu-title">審查文件</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a style="background-color: white; color: rgb(30, 29, 29)" class="nav-link" href="delBank.html">
+              <span class="menu-icon">
+                <svg style="color: rgb(30, 29, 29); height: 60%; width: 60%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-piggy-bank" viewBox="0 0 16 16">
+                  <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z"/>
+                  <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z"/>
+                </svg>
+              </span>
+              <span style="color: rgb(30, 29, 29)" class="menu-title">銀行帳戶</span>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-items">
+            <a style="background-color: white; color: rgb(30, 29, 29)" class="nav-link" href="delRecord.html">
+              <span class="menu-icon">
+                <svg style="color: rgb(30, 29, 29); height: 60%; width: 60%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                  <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                </svg>
+              </span>
+              <span style="color: rgb(30, 29, 29)" class="menu-title">訂單記錄查詢</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a style="background-color: #1A4D2E; color: rgb(30, 29, 29)" class="nav-link" href="delMsg.html">
+              <span class="menu-icon">
+                <svg style="color: rgb(30, 29, 29); height: 60%; width: 60%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                  <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                </svg>
+              </span>
+              <span style="color: rgb(30, 29, 29)" class="menu-title">收件匣</span>
+            </a>
+          </li>
+        
+        </ul>
+      </nav>
+<!-- SIDEBAR END -->
+
+      <div class="container-fluid page-body-wrapper">
+<!-- HEADER START -->
+        <nav id="header" class="navbar p-0 fixed-top d-flex flex-row mf-navbar" style="background-color: #1A4D2E;">
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="mdi mdi-menu"></span>
+            </button> -->
+            <ul class="navbar-nav w-100 d-flex justify-content-center">
+              <span class="logo">Mon</span>
+              <span class="logo2">Food</span>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+              <div class="navbar-profile">
+                <span class="nav-item menu-items">
+                  <a class="nav-link" href="javascript:;">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-person-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                      />
+                    </svg>
+                    <span class="menu-title align-item-center">登出</span>
+                  </a>
+                </span>
+              </div>
+            </ul>
+<!-- 手機畫面漢堡選單 -->
+            <button
+              class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+              type="button"
+              data-toggle="offcanvas"
+            >
+              <span class="mdi mdi-view-headline"></span>
+            </button>
+          </div>
+        </nav>
+<!-- HEADER END -->
+
+        <div class="main-panel">
+          <!-- ===== 內容客製化區塊 start ===== -->
+          <div class="mf-content-wrapper mt-5">
+            <!-- 表單區塊 -->
+            
+<!-- 植入開始             -->   
+                <div id="wholeArea">
+                  <h3>系統訊息</h3>
+                  <div id="messagesArea" ></div>
+                </div>
+                    
+<!-- 植入結束          -->
+   
+<!-- 表單區塊結束 -->
+          </div>
+          <!-- ===== 內容客製化區塊 ===== -->
+        </div>
+      </div>
+    </div>
+
+<!--FOOTER START -->
+    <div style="background-color: #1A4D2E">
+      <div class="container pb-0 mb-0 text-light" style="background-color: #1A4D2E">
+        <footer>
+          <div class="row justify-content-center mb-0 pt-0 pb-0 row-2 px-3">
+            <div class="col-12">
+              <div class="row justify-content-between">
+                <div class="col-6 align-self-center">
+                  <a class="navbar-brand d-inline-flex" href="index.html">
+                    <span class="logo">Mon</span>
+                    <span class="logo2">Food</span>
+                  </a>
+                </div>
+
+                <div class="col-6 col-lg-2 col-md-3 mt-sm-0 mt-0" style="font-size: 13px">
+                  <ul class="list-unstyled justify-content-center">
+                    <li class="mt-3 mb-1">
+                      <a href="resLogin.html" class="transparent">新增您的餐廳</a>
+                    </li>
+                    <li class="mb-1 transparent">
+                      <a href="delLogin.html">註冊成為外送夥伴</a>
+                    </li>
+                    <li class="mb-1 transparent">
+                      <a href="aboutUs.html">關於MonFood</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+<!--FOOTER END -->
+
+    <script src="../assets/js/jQuery-3.6.0.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+    <script src="../assets/js/off-canvas.js"></script>
+    <script src="../assets/js/hoverable-collapse.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <script src="../assets/js/settings.js"></script>
+    <script src="../assets/js/todolist.js"></script>
+    <script>
+      window.onload = function () {
+//websocket需要資訊       
+        var MyPoint;		//  /FriendWS/
+        var host = window.location.host;			//	localhost:8080
+        var path = window.location.pathname;		//	/WebSocketChatWeb/chat.jsp
+        var webCtx = path.substring(0, path.indexOf('/', 1));	//	/WebSocketChatWeb substring含頭不含尾
+        var messagesArea = $("div#messagesArea");
+        var self;
+//載入登入資料          
+        var getOneUrl = "../DelGetOneByID";
+        
+        $.ajax({
+          url: getOneUrl,
+          method: "POST",
+          async: false,
+          headers: {"content-Type": "application.json"},
+          dataType: "json",
+          body: JSON.stringify({}),
+          success: function(data){
+            console.log("success to load data!!");
+            self = data.delID;
+            MyPoint = "/FriendWS/"+self;
+          }
+        })
+        
+// 和WS建立連線
+        let endPointURL = "wss://" + window.location.host + "/monfood_maven" + MyPoint;        
+        // var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+        connect();
+        
+// LOGOUT
+        $(".logout").on("click", function () {
+          var logout = "../DelLogoutServlet";
+          $.ajax({
+            url: logout,
+            type: "POST",
+            data: JSON.stringify({
+              action: "logout",
+            }),
+            dataType: "json",
+            success: function (data) {
+              console.log(data);
+              if ("登出成功" === data) {
+                window.location.href = "../index.html";
+              }
+            },
+            complete: function () {
+              window.location.href = "../index.html";
+            },
+          });
+        });
+
+              
+        function connect() {
+
+		        webSocket = new WebSocket(endPointURL);
+
+		        webSocket.onopen = function(event) {
+			          console.log("Connect Success!");
+		        };
+
+            	webSocket.onmessage = function(event) {
+			          var jsonObj = JSON.parse(event.data);
+//上線載入好友列表			
+			      	  if ("open" === jsonObj.type) {
+                    console.log("delMsg get open");
+                		  addListener();
+//載入歷史訊息				
+			          } else if ("history" === jsonObj.type) {
+                  console.log("delMsg get history");
+                      messagesArea.innerHTML = '';
+		                  var ul = document.createElement('ul');
+		                  ul.id = "area";
+                      messagesArea.replaceWith(ul);
+		                  // messagesArea.append(ul);
+// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
+		                  var messages = JSON.parse(jsonObj.message);
+                          for (var i = 0; i < messages.length; i++) {
+                    var historyData = JSON.parse(messages[i]);
+                    var showMsg = historyData.message;
+                    var div = document.createElement('div');
+                    div.setAttribute("class", "box box-down cyan");
+                    // let btn_delete = document.createElement("button");
+                    // btn_delete.setAttribute("class", "delete_msg");
+                    div.innerHTML = showMsg;
+                    // div.append(btn_delete);
+                  // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+                  ul.appendChild(div);
+                }
+				        messagesArea.scrollTop = messagesArea.scrollHeight;
+// 線上聊天				
+			      } else if ("chat" === jsonObj.type) {
+// 				聊天泡泡
+              console.log("delMsg get chat");
+                  // var li = document.createElement('li');
+                  var div = document.createElement("div");
+                  div.setAttribute("class", "box box-down cyan");
+                  div.innerHTML = jsonObj.message;
+          // 				判斷是誰的泡泡
+                  // jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+          // 				把訊息裝入泡泡
+                  // li.innerHTML = jsonObj.message;
+                  console.log(div);
+//alert通知有誰送訊息來
+// 				if(jsonObj.sender != self){
+// 					alert("you got mail from "+jsonObj.sender);
+// 					var jsonObj = {
+// 						"type" : "history",
+// 						"sender" : self,
+// 						"receiver" : jsonObj.sender,
+// 						"message" : ""
+// 					};
+// 					statusOutput.innerHTML =  jsonObj.receiver; // 這裡為啥是receiver要想一下
+// 					        webSocket.send(JSON.stringify(jsonObj));
+// 				}
+
+// 				把裝有訊息的泡泡貼上去
+				  document.getElementById("area").appendChild(div);
+// *******		保持畫面在最下面要再了解一下
+				  messagesArea.scrollTop = messagesArea.scrollHeight;
+			    } else if ("close" === jsonObj.type) {
+				    console.log("失去連線");
+			    }
+			
+		    };
+
+        webSocket.onclose = function(event) {
+          console.log("Disconnected!");
+        };
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+// 有好友上線或離線就更新列表
+          // function refreshFriendList(jsonObj) {
+          //   var friends = jsonObj.users;
+          //   var row = document.getElementById("row");
+          //   //養成習慣新增東西前把舊東西清一清
+          //   row.innerHTML = '';
+          //   for (var i = 0; i < friends.length; i++) {
+          //     //水喔跳過自己不要新增到好友列表思緒周密
+          //     if (friends[i] === self) { continue; }
+          //     row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+          //   }
+          //   //這個也很屌 監聽者
+          //   addListener();
+          // }
+
+// 註冊列表點擊事件並抓取好友名字以取得歷史訊息
+          function addListener() {
+         
+            // var container = document.getElementById("row");
+            // container.addEventListener("click", function(e) {
+              //這行不知道耶srcElement感覺是取點哪個好朋友 事件來源的元素 酷耶還有這種寫法
+              // var friend = e.srcElement.textContent;
+              // updateFriendName(friend);
+              //統一格式丟一包msg出去裡面有類型, 誰送誰收內容是什麼
+              var jsonObj = {
+                  "type" : "history",
+                  "sender" : self,
+                  "receiver" : 'admin',
+                  "message" : ""
+                };
+              webSocket.send(JSON.stringify(jsonObj));
+            // });
+          }
+
+//刪除訊息
+        // $("div#wholeArea").on("click", "button.delete_msg", function(){
+        //   alert("wait to finish delete msg");
+        // });          
+
+
+
+
+
+
+
+              //只是顯示出跟誰聊天而已
+        // function updateFriendName(name) {
+        //   statusOutput.innerHTML = name;
+        // }
+
+
+
+    }
+    </script>
+  </body>
+</html>
